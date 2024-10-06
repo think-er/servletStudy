@@ -12,7 +12,7 @@ public class NoticeReg extends HttpServlet {
         // 클라이언트에게 UTF-8로 읽어라고 알려준다.
         resp.setContentType("text/html; charset=UTF-8");
         // 서버에게 요청을 읽기 전에 UTF-8로 읽어라고 알려준다.
-        req.setCharacterEncoding("UTF-8");
+        // req.setCharacterEncoding("UTF-8");
 
 
         PrintWriter out = resp.getWriter();
