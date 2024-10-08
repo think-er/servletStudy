@@ -16,8 +16,17 @@ public class Calc2 extends HttpServlet {
         // Application 저장소
         ServletContext application = req.getServletContext();
         // Session
+        /*
+         * 서버는 클라이언트로부터 요청을 받으면, 해당 클라이언트에 대한 새로운 세션을 생성한다. 이때 서버는 고유한 세션 ID를 생성하고,
+         * 이를 통해 클라이언트와의 세션을 식별한다. 
+         * 
+         * 서버는 응답을 생성할 때, 클라이언트에게 세션 ID를 전달해야 한다. 이때 일반적으로 쿠키에 세션 ID를 담아 클라이언트에게 전송한다. 
+         */
         HttpSession session = req.getSession();
 
+        /*
+         * 웹 애플리케이션에서 세션 ID와 쿠키는 모두 서버가 최초에 쿠키를 생성하고 클라이언트에게 응답하는 과정에 의존한다.
+         */
         Cookie[] cookies = req.getCookies();
 
         // UTF-8의 문자열 데이터를 보낸다.
