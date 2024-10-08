@@ -73,6 +73,9 @@ public class Calc2 extends HttpServlet {
 
             Cookie valueCookie = new Cookie("value", String.valueOf(v));
             Cookie opCookie = new Cookie("op", op);
+            // 해당 경로를 요청할 때만 쿠키를 가져갈 수 있도록 제한 
+            valueCookie.setPath("/calc2");
+            opCookie.setPath("/calc2");
             resp.addCookie(valueCookie);
             resp.addCookie(opCookie);
 
