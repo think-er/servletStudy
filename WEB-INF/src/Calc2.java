@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/calc2")
 public class Calc2 extends HttpServlet {
@@ -13,6 +14,9 @@ public class Calc2 extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Application 저장소
         ServletContext application = req.getServletContext();
+        // Session
+        HttpSession session = req.getSession();
+
         // UTF-8의 문자열 데이터를 보낸다.
         resp.setCharacterEncoding("UTF-8");
         // 상대에게 UTF-8로 읽어라고 알려준다.
@@ -30,9 +34,11 @@ public class Calc2 extends HttpServlet {
 
         // 계산
         if(op.equals("=")) {
-            int x = (Integer)application.getAttribute("value");
+            // int x = (Integer)application.getAttribute("value");
+            int x = (Integer)session.getAttribute("value");
             int y = v;
-            String operator = (String)application.getAttribute("op");
+            // String operator = (String)application.getAttribute("op");
+            String operator = (String)session.getAttribute("op");
             
             if(operator.equals("+"))
                 result = x + y;
@@ -43,8 +49,10 @@ public class Calc2 extends HttpServlet {
             req.getRequestDispatcher("/calc2.jsp").forward(req, resp);            
         }
         else {
-            application.setAttribute("value", v);
-            application.setAttribute("op", op);
+            // application.setAttribute("value", v);
+            // application.setAttribute("op", op);
+            session.setAttribute("value", v);
+            session.setAttribute("op", op);
             req.getRequestDispatcher("/calc2.jsp").forward(req, resp);            
         }
 
